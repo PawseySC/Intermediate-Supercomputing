@@ -17,7 +17,7 @@ echo "running job ${SLURM_JOB_ID}"
 if [[ ${job_number} -lt ${job_number_max} ]]
 then
   (( job_number++ ))
-  next_jobid=$(sbatch --export=job_number=${job_number} -d afterok:${SLURM_JOB_ID} runjob.sl | awk '{print $4}')
+  next_jobid=$(sbatch --export=job_number=${job_number} -d afterok:${SLURM_JOB_ID} job.slurm | awk '{print $4}')
   echo "submitted ${next_jobid}"
 fi
  
