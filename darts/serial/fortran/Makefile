@@ -3,7 +3,7 @@
 # Compiler definition
 # If running on Cray use compiler wrapper ftn instead of directly using Intel/GNU/PGI compiler. Consider swapping to an appropriate PrgEnv- module.
 # On other systems use: gfortran (for GNU), ifort (for Intel), pgf90 (PGI)
-F90 = ftn
+F90?=${FC}
 
 # Optimisation level set to -O2
 # Debugging enabled if using -g
