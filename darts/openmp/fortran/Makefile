@@ -3,14 +3,14 @@
 # Compiler definition
 # If running on Cray use compiler wrapper ftn instead of directly using Intel/GNU/PGI compiler. Consider swapping to an appropriate PrgEnv- module.
 # On other systems use: gfortran (for GNU), ifort (for Intel), pgf90 (PGI)
-F90 = ftn
+F90?=${FC}
 
 # Optimisation level set to -O2
 # Debugging enabled if using -g
 # Notice that OpenMP flag differs for different compiler families
 # Use: -fopenmp (for GNU), -qopenmp (for Intel), -mp (for PGI)
 # OpenMP is enabled by default for Cray compiler.
-FFLAGS = -O2 -g -qopenmp
+FFLAGS = -O2 -g
 
 darts-omp: darts-omp.o
 	${F90} ${FFLAGS} -o darts-omp darts-omp.o
