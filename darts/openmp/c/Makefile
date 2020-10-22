@@ -10,8 +10,30 @@
 # Use: -fopenmp (for GNU), -qopenmp (for Intel), -mp (for PGI)
 # OpenMP is enabled by default for Cray compiler.
 CFLAGS = -O2 -g
+CC_NAME=$(shell $(CC) 2>&1 | head -n 1 | grep -m 1 -oE "(gcc|g++|icc|icpc|pgi)" | head -n 1)
 
+ifeq ($(CC_NAME), icc)
+CFLAGS += -qopenmp
+endif
+
+ifeq ($(CC_NAME), icpc)
+CFLAGS += -qopenmp
+endif
+
+ifeq ($(CC_NAME), pgi)   
+CFLAGS += -mp
+endif 
+
+ifeq ($(CC_NAME), gcc)   
+CFLAGS += -fopenmp
+endif 
+
+ifeq ($(CC_NAME), g++)   
+CFLAGS += -fopenmp
+endif 
+#
 # Default target  
+
 all: darts-omp
 
 darts-omp: darts-omp.o 
