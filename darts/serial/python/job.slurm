@@ -8,6 +8,6 @@
 #SBATCH --time=00:05:00
 #SBATCH --export=NONE
 
-module load python
+module load python/3.6.3
 
-srun --export=all -n 1 python ./darts.py
+srun --export=all -n 1 python3 ./darts.py
